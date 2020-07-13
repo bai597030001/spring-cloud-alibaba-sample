@@ -1,5 +1,4 @@
-server:
-  port: 20010
+server.port: 20020
 spring:
   application:
     name: service-abis-server

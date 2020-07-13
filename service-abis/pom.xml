@@ -16,6 +16,4 @@
         <module>service-abis-api</module>
         <module>service-abis-server</module>
     </modules>
-
-
 </project>

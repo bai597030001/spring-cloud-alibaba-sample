@@ -1,0 +1,40 @@
+server.port: 20000
+
+spring:
+  application:
+    name: cloud-gateway
+  redis:
+    host: host-application
+    port: 6379
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # 是否与服务注册于发现组件进行结合，通过 serviceId 转发到具体的服务实例。默认为 false，设为 true 便开启通过服务中心的自动根据 serviceId 创建路由的功能。
+          enabled: true
+          # 如果需要小写serviceId,则配置 lower-case-service-id: true
+          # 注意: 不管小写大写,不能使用下划线,否则会报
+          lower-case-service-id: true
+      # 默认filters,用于配置公共的过滤逻辑
+      default-filters:
+        # filter的名称，必须是RequestRateLimiter
+        - name: RequestRateLimiter
+          args:
+            # 允许用户每秒处理的请求个数
+            redis-rate-limiter.replenishRate: 10
+            # 令牌桶的容量，允许在一秒内完成的最大请求数
+            redis-rate-limiter.burstCapacity: 10
+            # 使用SpEL名称引用Bean，与配置类中的 KeyResolver 的bean的name相同
+            key-resolver: '#{@ipKeyResolver}'
+#      routes:
+#        - id: eureka-pri
+#          uri: lb://eureka-pri
+#          predicates:
+#            - Path=//eureka-pri/**
+#          filters:
+#            - name: Hystrix
+#              args:
+#                name: fallback
+#                fallbackUri: forward:/fallback
+      loadbalancer:
+        use404: true

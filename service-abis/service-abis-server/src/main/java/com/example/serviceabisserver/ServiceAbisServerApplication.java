@@ -7,7 +7,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-@EnableDubbo
 public class ServiceAbisServerApplication {
 
     public static void main(String[] args) {

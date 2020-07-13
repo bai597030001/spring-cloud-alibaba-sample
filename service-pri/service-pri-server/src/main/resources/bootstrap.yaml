@@ -1,5 +1,5 @@
 server:
-  port: 20020
+  port: 20030
 spring:
   application:
     name: service-pri-server

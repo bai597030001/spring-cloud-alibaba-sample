@@ -11,11 +11,11 @@ dubbo:
     # qos-port: 33333
   scan:
     # 包扫描
-    base-packages: com.example.serviceabisserver.service
+    base-packages: com.example.serviceabisserver
   protocol:
     name: dubbo # 指定通信协议
     id: dubbo
-    # port: 20882 # 通信端口  这里指的是与消费者间的通信协议与端口
+    port: 20882 # 通信端口  这里指的是与消费者间的通信协议与端口
   registry.address: nacos://localhost:8848
   cloud:
     # 订阅的提供者名称
